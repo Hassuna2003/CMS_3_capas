@@ -1,4 +1,4 @@
-# Creación de una infraestuctura en 3 capas para el despliegue de Wordpress.
+# Creación de una infraestuctura en 3 capas para el despliegue de WordPress.
 
 ## Configuración de montaje de las VPC, subredes e instancias.
 
