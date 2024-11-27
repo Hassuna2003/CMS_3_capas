@@ -45,9 +45,13 @@ Regla 2 (permitir acceso desde cualquier IP).
 
 ![image](https://github.com/user-attachments/assets/79cd9a26-c1e1-4e4f-8e16-eec86d289ae3)
 
-Regla de salida (permitir salida a cualquier destino).
+Regla de salida 1 (permitir salida a cualquier destino).
 
 ![image](https://github.com/user-attachments/assets/7461ed74-11ee-47bf-8399-d4c6cd1124a1)
+
+Regla de salida 2 (permite que el balanceador de carga se comunique con las instancias backend para distribuir el tráfico web).
+
+![image](https://github.com/user-attachments/assets/f0a5bea6-3e07-49be-8a02-7f696d7eb543)
 
 b) Crear grupo de seguridad para el Backend y NFS.
 
@@ -63,9 +67,13 @@ Regla 3 (el servicio NFS (Network File System) utiliza el puerto 111 para coordi
 
 ![image](https://github.com/user-attachments/assets/8c9a6cf1-622a-4b92-bf37-297dcd583c90)
 
-Regla de salida (permitir salida a cualquier destino).
+Regla de salida 1 (permitir salida a cualquier destino).
 
 ![image](https://github.com/user-attachments/assets/e42da58f-f305-41e9-9f05-cca50cf2632d)
+
+Regla de salida 2 (permite que los servidores backend se conecten a la base de datos).
+
+![image](https://github.com/user-attachments/assets/b555e612-3bb3-40b5-b3e7-0a926eb046b3)
 
 c) Crear grupo de seguridad para la base de datos.
 
