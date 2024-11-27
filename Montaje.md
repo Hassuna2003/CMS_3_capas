@@ -53,6 +53,10 @@ Regla de salida 2 (permite que el balanceador envie el tráfico a los servidores
 
 ![Captura de pantalla 2024-11-27 143615](https://github.com/user-attachments/assets/8625446b-940d-49b6-9024-647c95e70806)
 
+Regla de salida 3 (permitir salida a todo el tráfico).
+
+![Captura de pantalla 2024-11-27 150955](https://github.com/user-attachments/assets/07e53f7d-9e6d-42b5-9193-55063680e851)
+
 b) Crear grupo de seguridad para el Backend y NFS.
 
 Regla 1 (permitimos que el balanceador se comunique con los Backend).
