@@ -47,11 +47,11 @@ Regla 2 (permitir acceso desde cualquier IP).
 
 Regla de salida 1 (permitir salida a cualquier destino).
 
-![image](https://github.com/user-attachments/assets/7461ed74-11ee-47bf-8399-d4c6cd1124a1)
+![Captura de pantalla 2024-11-27 143550](https://github.com/user-attachments/assets/9609ef8f-cf9f-4b08-bfa0-48f2a64150d7)
 
-Regla de salida 2 (permite que el balanceador de carga se comunique con las instancias backend para distribuir el tráfico web).
+Regla de salida 2 (permite que el balanceador envie el tráfico a los servidores del Backend).
 
-![image](https://github.com/user-attachments/assets/f0a5bea6-3e07-49be-8a02-7f696d7eb543)
+![Captura de pantalla 2024-11-27 143615](https://github.com/user-attachments/assets/8625446b-940d-49b6-9024-647c95e70806)
 
 b) Crear grupo de seguridad para el Backend y NFS.
 
