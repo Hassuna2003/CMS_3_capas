@@ -15,3 +15,33 @@ sudo a2enmod lbmethod_byrequests
 # Reiniciamos apache para aplicar cambios
 sudo systemctl restart apache2
 
+# Creamos un nuevo archivo de configuración para crear un VirtualHost con la configuración del proxy inverso
+sudo bash -c "cat > /etc/apache2/sites-available/load-balancer.conf <<EOL
+<VirtualHost *:80>
+    <Proxy balancer://mycluster>
+        BalancerMember http://192.168.10.34
+        BalancerMember http://192.168.10.35
+    </Proxy>
+    ProxyPass / balancer://mycluster/
+</VirtualHost>
+EOL"
+
+# Habilitamos el VirtualHost que acabamos de crear
+sudo a2ensite load-balancer.conf
+
+# Deshabilitamos el VirtualHost que tiene Apache configurado por defecto
+sudo a2dissite 000-default.conf
+
+# Reiniciamos el servicio para aplicar los cambios
+sudo systemctl restart apache2
+
+
+
+
+
+
+
+
+
+
+
