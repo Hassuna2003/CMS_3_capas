@@ -35,61 +35,31 @@ Creamos las tablas de enrutamiento y se las asignamos a las subredes correspondi
 
 6. Crear los grupos de seguridad:
 
-a) Creamos el grupo de seguridad para el balanceador, añadiendo reglas de entrada para HTTP y HTTPS.
+Grupo del balanceador:
 
-Regla 1 (permitir acceso desde cualquier IP).
+Regla de entrada:
+- Todo el tráfico con origen 0.0.0.0/0
 
-![image](https://github.com/user-attachments/assets/d312bbdd-2b18-48f8-a184-dba6491eff52)
+Regla de salida: 
+- Todo el tráfico con origen 0.0.0.0/0
 
-Regla 2 (permitir acceso desde cualquier IP).
+Grupo del backend + nfs:
 
-![image](https://github.com/user-attachments/assets/79cd9a26-c1e1-4e4f-8e16-eec86d289ae3)
+Regla de entrada:
+- Todo el tráfico con origen 0.0.0.0/0
 
-Regla de salida 1 (permitir salida a cualquier destino).
+Regla de salida: 
+- Todo el tráfico con origen 0.0.0.0/0
 
-![Captura de pantalla 2024-11-27 143550](https://github.com/user-attachments/assets/9609ef8f-cf9f-4b08-bfa0-48f2a64150d7)
+Grupo de la base de datos:
 
-Regla de salida 2 (permite que el balanceador envie el tráfico a los servidores del Backend).
+Regla de entrada:
+- Todo el tráfico con origen 0.0.0.0/0
 
-![Captura de pantalla 2024-11-27 143615](https://github.com/user-attachments/assets/8625446b-940d-49b6-9024-647c95e70806)
+Regla de salida: 
+- Todo el tráfico con origen 0.0.0.0/0
 
-Regla de salida 3 (permitir salida a todo el tráfico).
-
-![Captura de pantalla 2024-11-27 150955](https://github.com/user-attachments/assets/07e53f7d-9e6d-42b5-9193-55063680e851)
-
-b) Crear grupo de seguridad para el Backend y NFS.
-
-Regla 1 (permitimos que el balanceador se comunique con los Backend).
-
-![image](https://github.com/user-attachments/assets/1ceadf3e-d399-4f91-983e-3405af60b7ca)
-
-Regla 2 (hacemos una autorreferencia al grupo para que se comunique el Backend y NFS).
-
-![image](https://github.com/user-attachments/assets/647982f6-7c60-42a9-b693-3192be4b3fb5)
-
-Regla 3 (el servicio NFS (Network File System) utiliza el puerto 111 para coordinar la comunicación entre clientes y servidores).
-
-![image](https://github.com/user-attachments/assets/8c9a6cf1-622a-4b92-bf37-297dcd583c90)
-
-Regla de salida 1 (permitir salida a cualquier destino).
-
-![image](https://github.com/user-attachments/assets/e42da58f-f305-41e9-9f05-cca50cf2632d)
-
-Regla de salida 2 (permite que los servidores backend se conecten a la base de datos).
-
-![image](https://github.com/user-attachments/assets/b555e612-3bb3-40b5-b3e7-0a926eb046b3)
-
-c) Crear grupo de seguridad para la base de datos.
-
-Regla de entrada 1 (aseguramos que solo los servidores de Backend puedan acceder a la base de datos).
-
-![image](https://github.com/user-attachments/assets/80be8200-f898-4155-b875-4b1ca4ef3b51)
-
-Regla de salida (permitir salida a cualquier destino).
-
-![image](https://github.com/user-attachments/assets/cb8c2e12-35f8-4582-818c-3e3a0d35d7ae)
-
-7. Crear las instancias:
+8. Crear las instancias:
 
 a) Instancia para el balanceador (La imagen del SSOO será Ubuntu 24.04; tipo de instancia: t2.micro; creamos un par de claves; y en la configuración de red establecemos los ajustes mostrados en la imagen debajo).
 
@@ -117,4 +87,7 @@ Creamos una dirección IP elástica y la asignamos al Balanceador.
 
 ![image](https://github.com/user-attachments/assets/21c74815-c08e-494b-b588-32b27da634d2)
 
+11. Para que las maquinas en las subredes privadas tengan internet, tenemos que crear una Gateway NAT, asignándola a la subred pública pero añadiendola a la tabla de enrutamiento de las subredes privadas.
+
+![image](https://github.com/user-attachments/assets/8b3b395c-0c48-4105-be99-b7a1bb52cd36)
 
