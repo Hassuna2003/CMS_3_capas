@@ -91,3 +91,6 @@ Creamos una dirección IP elástica y la asignamos al Balanceador.
 
 ![image](https://github.com/user-attachments/assets/8b3b395c-0c48-4105-be99-b7a1bb52cd36)
 
+12. Cuando acabemos de configurar las máquinas (no seguir haciendo uso de internet), debemos eliminar la Gateway NAT de la ruta de la tabla privada. 
+
+![image](https://github.com/user-attachments/assets/166f7923-9baa-489f-a6bd-c069dfbe650e)
