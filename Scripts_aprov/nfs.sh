@@ -20,3 +20,18 @@ sudo sed -i '$a /var/nfs/compartir    10.0.2.0/24(rw,sync,no_subtree_check)' /et
 sudo curl -O https://wordpress.org/latest.zip
 
 sudo unzip -o latest.zip -d /var/nfs/compartir/
+
+sudo chmod 755 -R /var/nfs/compartir/
+
+sudo chown -R www-data:www-data /var/nfs/compartir/*
+
+sudo chown -R nobody:nogroup /var/nfs/compartir/
+
+sudo systemctl restart nfs-kernel-server
+
+
+
+
+
+
+
