@@ -19,8 +19,8 @@ sudo systemctl restart apache2
 sudo bash -c "cat > /etc/apache2/sites-available/load-balancer.conf <<EOL
 <VirtualHost *:80>
     <Proxy balancer://mycluster>
-        BalancerMember http://192.168.10.34
-        BalancerMember http://192.168.10.35
+        BalancerMember http://192.168.30.34
+        BalancerMember http://192.168.30.35
     </Proxy>
     ProxyPass / balancer://mycluster/
 </VirtualHost>
