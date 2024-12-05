@@ -23,6 +23,7 @@ sudo bash -c "cat > /etc/apache2/sites-available/load-balancer.conf <<EOL
         BalancerMember http://10.0.2.166
     </Proxy>
     ProxyPass / balancer://mycluster/
+    ProxyPassReverse / balancer://mycluster/
 </VirtualHost>
 EOL"
 
@@ -31,6 +32,8 @@ sudo a2ensite load-balancer.conf
 
 # Deshabilitamos el VirtualHost que tiene Apache configurado por defecto
 sudo a2dissite 000-default.conf
+
+sudo sed -i '/<VirtualHost/a \    ServerName wordpressjosein.zapto.org' /etc/apache2/sites-enabled/balancer.conf
 
 # Reiniciamos el servicio para aplicar los cambios
 sudo systemctl restart apache2
