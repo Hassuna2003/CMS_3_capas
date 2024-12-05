@@ -19,8 +19,8 @@ sudo systemctl restart apache2
 sudo bash -c "cat > /etc/apache2/sites-available/load-balancer.conf <<EOL
 <VirtualHost *:80>
     <Proxy balancer://mycluster>
-        BalancerMember http://192.168.30.34
-        BalancerMember http://192.168.30.35
+        BalancerMember http://10.0.2.226
+        BalancerMember http://10.0.2.166
     </Proxy>
     ProxyPass / balancer://mycluster/
 </VirtualHost>
@@ -35,24 +35,8 @@ sudo a2dissite 000-default.conf
 # Reiniciamos el servicio para aplicar los cambios
 sudo systemctl restart apache2
 
-# Añadimos nombre de nuestro dominio al fichero del Virtualhost
-sudo sed -i "/<VirtualHost \*:80>/a\    ServerName wordpressjosein.zapto.org" /etc/apache2/sites-available/load-balancer.conf
-
 # Reiniciamos el servicio para aplicar los cambios
 sudo systemctl reload apache2
-
-# Permitimos trafico en el puerto 80
-sudo ufw allow 80/tcp
-
-# Permitimos trafico HTTPS en el puerto 443
-sudo ufw allow 443/tcp
-
-# Habilitamos el firewall UFW
-sudo ufw enable
-
-# Reiniciamos el firewall
-sudo ufw reload
-
 
 
 
