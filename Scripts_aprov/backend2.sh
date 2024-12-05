@@ -30,3 +30,5 @@ sudo a2ensite web.conf
 sudo systemctl restart apache2
 
 sudo systemctl reload apache2
+
+sudo echo "10.0.2.130:/var/nfs/compartir    /var/nfs/compartir   nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" | sudo tee -a /etc/fstab
