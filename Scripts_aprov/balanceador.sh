@@ -12,10 +12,14 @@ sudo a2enmod proxy_balancer
 # Este método de balanceo de carga consiste en distribuir las peticiones entre los servidores de forma secuencial, de forma que cada vez que llegue una nueva petición se envía al siguiente servidor de la lista de servidores configurados en el servidor Apache
 sudo a2enmod lbmethod_byrequests
 
+# Otros módulos necesarios
+sudo a2enmod rewrite
+sudo a2enmod headers
+
 # Reiniciamos apache para aplicar cambios
 sudo systemctl restart apache2
 
-# Creamos un nuevo archivo de configuración para crear un VirtualHost con la configuración del proxy inverso
+# Creamos un nuevo archivo de configuración para crear un VirtualHost con la configuración del proxy
 sudo bash -c "cat > /etc/apache2/sites-available/load-balancer.conf <<EOL
 <VirtualHost *:80>
     <Proxy balancer://mycluster>
@@ -33,6 +37,7 @@ sudo a2ensite load-balancer.conf
 # Deshabilitamos el VirtualHost que tiene Apache configurado por defecto
 sudo a2dissite 000-default.conf
 
+# Añadimos el nombre de nuestro dominio al fichero del proxy
 sudo sed -i '/<VirtualHost/a \    ServerName wordpressjosein.zapto.org' /etc/apache2/sites-enabled/balancer.conf
 
 # Reiniciamos el servicio para aplicar los cambios
